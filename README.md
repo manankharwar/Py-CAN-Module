@@ -9,3 +9,6 @@ Produce a python module for CAN messages.
 - Tx and Rx functions for transmitting and receiving messages.
 - Logging functionality to record message id, data sent/received and the time at which it took place.
 - Functions for running specific CAN messages.
+
+### References:
+[python-can library](https://python-can.readthedocs.io/en/stable/index.html)
