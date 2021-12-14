@@ -1,4 +1,5 @@
 import can
+from can import bus
 from can.interface import Bus
 
 class canNode:
@@ -26,12 +27,20 @@ class canNode:
             print("Please enter a valid bitrate")
         
 
-    def send(self):
-        pass
+    def send(self, msg):
+        #msg = can.Message(arbitration_id=)
+
+        try:
+            bus.send(msg)
+            print("Message sent on " + str(bus.channel_info))
+        except:
+            print("Message not sent")
+
 
     def recieve(self):
-        pass
-
+        while True:
+            msg = bus.recv()
+            print(msg)
 
 
     
