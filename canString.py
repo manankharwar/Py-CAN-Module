@@ -1,3 +1,6 @@
+import channel_AMK
+
+
 '''
     This is a class to represent the different types of CAN
     string messages that canNode will utilize to 
@@ -19,12 +22,18 @@ class canString:
     
     is_extended_id = False
 
-    def __init__(self, id, bitRate, errorFrame, remoteFrame, extendedId):
+    data = []
+    
+    dataLength = 0
+
+    def __init__(self, id, bitRate, errorFrame, remoteFrame, extendedId, Data, dataLen = 0):
         self.msgId = id
         self.bitrate = bitRate
         self.errorFrame = errorFrame
         self.remoteFrame = remoteFrame
         self.is_extended_id = extendedId
+        self.data = Data
+        self.dataLength = dataLen
 
     #check length of hexidecimal string for different can nodes
     def checkHexLen(string):
@@ -44,28 +53,26 @@ class canString:
     def checkDataLen(lst, bits):
         bitCount = 0
     
-    #check to make sure that max data size of 8 bits per item is not larger than total bits
-    if len(lst) > bits/8:
-        print("1")
-        return False
-    else:
-        for item in lst:
-            #get length of item in bits
-            dataLen = checkHexLen(bin(item))
-            
-            if dataLen > 8:
-                print("2")
-                return False
-            bitCount += dataLen
-            
-        #check that bitcount less than or equal to bits passed
-        if bitCount <= bits:
-            return True
-        return False
+        #check to make sure that max data size of 8 bits per item is not larger than total bits
+        if len(lst) > bits/8:
+            return False
+        else:
+            for item in lst:
+                #get length of item in bits
+                dataLen = checkHexLen(bin(item))
+                
+                if dataLen > 8:
+                    return False
+                bitCount += dataLen
+                
+            #check that bitcount less than or equal to bits passed
+            if bitCount <= bits:
+                return True
+            return False
 
 class can2A(canString):
 
-    def __init__(self, id, bitRate, errorFrame, remoteFrame):
+    def __init__(self, id, bitRate, errorFrame, remoteFrame, data = [], dataLen = 0):
         flag_id = False
         flag_bitRate = False
         if canString.checkHexLen(str(id)) > 11:
@@ -79,12 +86,12 @@ class can2A(canString):
         if flag_id == True or flag_bitRate == True:
             print("Did not complete node build")
         else:
-            super().__init__(id, bitRate, errorFrame, remoteFrame, True)
+            super().__init__(id, bitRate, errorFrame, remoteFrame, True, data, dataLen)
             print("Built node")  
 
 class can2B(canString):
     
-    def __init__(self, id, bitRate, errorFrame, remoteFrame):
+    def __init__(self, id, bitRate, errorFrame, remoteFrame, data =[]):
         flag_id = False
         flag_bitRate = False
         if canString.checkHexLen(id) > 30:
@@ -101,10 +108,5 @@ class can2B(canString):
             super().__init__(id, bitRate, errorFrame, remoteFrame, True)
             print("Built node")  
 
-class AMK(can2A):
-
-    data = []
-
-    def __init__(self, data):
-
-
+        
+    
