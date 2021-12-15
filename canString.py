@@ -17,11 +17,14 @@ class canString:
     #bool representing remote frame flag
     is_remote_frame = True
     
-    def __init__(self, id, bitRate, errorFrame, remoteFrame):
+    is_extended_id = False
+
+    def __init__(self, id, bitRate, errorFrame, remoteFrame, extendedId):
         self.msgId = id
         self.bitrate = bitRate
         self.errorFrame = errorFrame
         self.remoteFrame = remoteFrame
+        self.is_extended_id = extendedId
 
     #check length of hexidecimal string for different can nodes
     def checkHexLen(string):
@@ -42,13 +45,43 @@ class canString:
 class can2A(canString):
 
     def __init__(self, id, bitRate, errorFrame, remoteFrame):
-        flag = False
+        flag_id = False
+        flag_bitRate = False
         if canString.checkHexLen(id) > 11:
-            return ValueError("Please enter a valid message ID for can2.0A protocol")
+            print("Please enter a valid message ID for can2.0A protocol")
+            lenFlag = True
         
         if bitRate != 500000:
-            return ValueError("Please enter a valid bitrate for can2.0A protocol")
+            print("Please enter a valid bitrate for can2.0A protocol")
+            flag_bitRate = True
         
-        super().__init__(id, bitRate, errorFrame, remoteFrame)
-        print("Built node")
+        if flag_id == True or flag_bitRate == True:
+            print("Did not complete node build")
+        else:
+            super().__init__(id, bitRate, errorFrame, remoteFrame, True)
+            print("Built node")  
+
+class can2B(canString):
+    
+    def __init__(self, id, bitRate, errorFrame, remoteFrame):
+        flag_id = False
+        flag_bitRate = False
+        if canString.checkHexLen(id) > 30:
+            print("Please enter a valid message ID for can2.0B protocol")
+            lenFlag = True
+        
+        if bitRate != 1000000:
+            print("Please enter a valid bitrate for can2.0B protocol")
+            flag_bitRate = True
+        
+        if flag_id == True or flag_bitRate == True:
+            print("Did not complete node build")
+        else:
+            super().__init__(id, bitRate, errorFrame, remoteFrame, True)
+            print("Built node")  
+class AMK(can2A):
+
+    data = []
+
+    def 
 
