@@ -1,0 +1,8 @@
+#format: description[message id, data length]
+dashAccumulator= [0x190, 40]
+dashMotor = [0x1F4, 32]
+dashVeichle = [0xC8, 18]
+driverWheel = [0X12C, 3]
+driverSettings = [0X258, 16]
+driverInputs = [0x64, 48]
+veichleDynamics = [0x2BC, 40]
