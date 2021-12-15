@@ -41,13 +41,34 @@ class canString:
                 return ValueError("Please enter a correct id")
         return bits
 
+    def checkDataLen(lst, bits):
+        bitCount = 0
+    
+    #check to make sure that max data size of 8 bits per item is not larger than total bits
+    if len(lst) > bits/8:
+        print("1")
+        return False
+    else:
+        for item in lst:
+            #get length of item in bits
+            dataLen = checkHexLen(bin(item))
+            
+            if dataLen > 8:
+                print("2")
+                return False
+            bitCount += dataLen
+            
+        #check that bitcount less than or equal to bits passed
+        if bitCount <= bits:
+            return True
+        return False
 
 class can2A(canString):
 
     def __init__(self, id, bitRate, errorFrame, remoteFrame):
         flag_id = False
         flag_bitRate = False
-        if canString.checkHexLen(id) > 11:
+        if canString.checkHexLen(str(id)) > 11:
             print("Please enter a valid message ID for can2.0A protocol")
             lenFlag = True
         
@@ -79,9 +100,11 @@ class can2B(canString):
         else:
             super().__init__(id, bitRate, errorFrame, remoteFrame, True)
             print("Built node")  
+
 class AMK(can2A):
 
     data = []
 
-    def 
+    def __init__(self, data):
+
 
