@@ -32,5 +32,5 @@ amkActualValues2Inverter1 = [0x295, 64]
 amkActualValues1Inverter2 = [0x2A3, 64]
 amkActualValues2Inverter2 = [0x2A5, 64]
 amkActualValues1Inverter3 = [0x2B3, 64]
-amkActualValues2Inverter3 = [0x2B3, 64]
+amkActualValues2Inverter3 = [0x2B5, 64]
 
