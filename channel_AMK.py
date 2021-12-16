@@ -5,7 +5,7 @@ from canString import can2A
 class AMK(can2A):
 
     def __init__(self, messageId, dataLength):
-        super().__init__(messageId, 500000, False, True, None, dataLength)
+        super().__init__(messageId, 500000, False, False, None, dataLength)
 
 
 class AMKSetPoints1Inverter0(AMK):
