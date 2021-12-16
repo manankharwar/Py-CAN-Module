@@ -20,10 +20,10 @@ statusWords = [0x1100, 40]
 acknowledgement = [0x1200, 1]
 
 # AMK channel
-amkSetpoints1Inverer0 = [0x184, 64]
-amkSetpoints1Inverer1 = [0x194, 64]
-amkSetpoints1Inverer2 = [0x1A4, 64]
-amkSetpoints1Inverer3 = [0x1B4, 64]
+amkSetpoints1Inverter0 = [0x184, 64]
+amkSetpoints1Inverter1 = [0x194, 64]
+amkSetpoints1Inverter2 = [0x1A4, 64]
+amkSetpoints1Inverter3 = [0x1B4, 64]
 
 amkActualValues1Inverter0 = [0x283, 64]
 amkActualValues2Inverter0 = [0x285, 64]
