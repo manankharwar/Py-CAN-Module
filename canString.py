@@ -1,6 +1,5 @@
 import channel_Driver
 
-
 '''
     This is a class to represent the different types of CAN
     string messages that canNode will utilize to 
@@ -14,11 +13,14 @@ class canString:
 
     bitrate = 0
 
-    #bool representing error frame flag
+    # bool representing error frame flag
+    # occures when a node detects an error in a
+    # message which should casue other nodes to send an error frame as well
     is_error_frame = False
 
-    #bool representing remote frame flag
-    is_remote_frame = True
+    # bool representing remote frame flag
+    # solicit data from other nodes by not passing nay data?
+    is_remote_frame = False
     
     is_extended_id = False
 
@@ -36,6 +38,7 @@ class canString:
         self.dataLength = dataLen
 
     #check length of hexidecimal string for different can nodes
+    @staticmethod
     def checkHexLen(string):
         bits = 0
         for ch in string[2:]:
@@ -50,6 +53,7 @@ class canString:
                 return ValueError("Please enter a correct id")
         return bits
 
+    @staticmethod
     def checkDataLen(lst, bits):
         bitCount = 0
     
