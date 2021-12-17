@@ -6,7 +6,7 @@ taken from CAN_Traffic_Calculations.xlsx
 '''
 
 # Driver channel
-dashAccumulator= [0x190, 40]
+dashAccumulator = [0x190, 40]
 dashMotor = [0x1F4, 32]
 dashVehicle = [0xC8, 18]
 driverWheel = [0X12C, 3]

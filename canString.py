@@ -1,5 +1,3 @@
-import channel_Driver
-
 '''
     This is a class to represent the different types of CAN
     string messages that canNode will utilize to 
@@ -38,8 +36,8 @@ class canString:
         self.dataLength = dataLen
 
     #check length of hexidecimal string for different can nodes
-    @staticmethod
-    def checkHexLen(string):
+
+    def checkHexLen(self, string):
         bits = 0
         for ch in string[2:]:
             #A to Z or a to z
@@ -53,8 +51,8 @@ class canString:
                 return ValueError("Please enter a correct id")
         return bits
 
-    @staticmethod
-    def checkDataLen(lst, bits):
+    #check that data being passed is of proper size and each element is 8 bytes or less
+    def checkDataLen(self, lst, bits):
         bitCount = 0
     
         #check to make sure that max data size of 8 bits per item is not larger than total bits
@@ -63,7 +61,7 @@ class canString:
         else:
             for item in lst:
                 #get length of item in bits
-                dataLen = checkHexLen(bin(item))
+                dataLen = self.checkHexLen(bin(item))
                 
                 if dataLen > 8:
                     return False
@@ -76,18 +74,18 @@ class canString:
 
 class can2A(canString):
 
-    def __init__(self, id, bitRate, errorFrame, remoteFrame, data = [], dataLen = 0):
+    def __init__(self, id, bitRate, errorFrame, remoteFrame, data, dataLen):
         flag_id = False
         flag_bitRate = False
-        if canString.checkHexLen(str(id)) > 11:
+        if self.checkHexLen(str(id)) > 11:
             print("Please enter a valid message ID for can2.0A protocol")
-            lenFlag = True
+            flag_id = True
         
         if bitRate != 500000:
             print("Please enter a valid bitrate for can2.0A protocol")
             flag_bitRate = True
         
-        if flag_id == True or flag_bitRate == True:
+        if flag_id or flag_bitRate:
             print("Did not complete node build")
         else:
             super().__init__(id, bitRate, errorFrame, remoteFrame, True, data, dataLen)
