@@ -3,11 +3,16 @@ import channel_Driver as Driver
 import channel_Cooling as Cooling
 
 def main():
-    msg1 = Driver.DashboardAccumulatorData([1,255,3,4,5])
-    msg2 = AMK.AMKActualValues1Inverter0([1,2,3,4,5,6,7])
+    msg1 = Driver.DashboardAccumulatorData()
+
+    msg1.newData([1,2,3,4,5,6])
     try:
         print(msg1.msgId)
-        print(msg1.dataLength)
+        print(msg1.dataBits)
+        print(msg1.bitrate)
+        print(msg1.is_extended_id)
+        print(msg1.is_error_frame)
+        print(msg1.is_remote_frame)
         print(msg1.data)
     except:
         pass

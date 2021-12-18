@@ -23,17 +23,16 @@ class canString:
     is_extended_id = False
 
     data = []
-    
-    dataLength = 0
 
-    def __init__(self, id, bitRate, errorFrame, remoteFrame, extendedId, Data, dataLen = 0):
-        self.msgId = id
+    dataBits = 0
+
+    def __init__(self, bitRate, errorFrame, remoteFrame, extendedId, msgType):
+        self.msgId = msgType[0]
         self.bitrate = bitRate
-        self.errorFrame = errorFrame
-        self.remoteFrame = remoteFrame
+        self.is_remote_frame = errorFrame
+        self.is_remote_frame = remoteFrame
         self.is_extended_id = extendedId
-        self.data = Data
-        self.dataLength = dataLen
+        self.dataBits = msgType[1]
 
     #check length of hexidecimal string for different can nodes
 
@@ -72,12 +71,18 @@ class canString:
                 return True
             return False
 
+    def newData(self, Data):
+        if self.checkDataLen(Data, self.dataBits):
+            self.data = Data
+        else:
+            print("Please add proper data")
+
 class can2A(canString):
 
-    def __init__(self, id, bitRate, errorFrame, remoteFrame, data, dataLen):
+    def __init__(self, bitRate, errorFrame, remoteFrame, msgType):
         flag_id = False
         flag_bitRate = False
-        if self.checkHexLen(str(id)) > 11:
+        if self.checkHexLen(str(msgType[0])) > 11:
             print("Please enter a valid message ID for can2.0A protocol")
             flag_id = True
         
@@ -88,15 +93,16 @@ class can2A(canString):
         if flag_id or flag_bitRate:
             print("Did not complete node build")
         else:
-            super().__init__(id, bitRate, errorFrame, remoteFrame, True, data, dataLen)
+            super().__init__(bitRate, errorFrame, remoteFrame, False, msgType)
             print("Built node")  
 
+'''
 class can2B(canString):
     
-    def __init__(self, id, bitRate, errorFrame, remoteFrame, data =[]):
+    def __init__(self, id, bitRate, errorFrame, remoteFrame,data, dataLen):
         flag_id = False
         flag_bitRate = False
-        if canString.checkHexLen(id) > 30:
+        if canString.checkHexLen(id) > 29:
             print("Please enter a valid message ID for can2.0B protocol")
             lenFlag = True
         
@@ -107,8 +113,8 @@ class can2B(canString):
         if flag_id == True or flag_bitRate == True:
             print("Did not complete node build")
         else:
-            super().__init__(id, bitRate, errorFrame, remoteFrame, True)
+            super().__init__(id, bitRate, errorFrame, remoteFrame, True, data, dataLen)
             print("Built node")  
-
+'''
         
     

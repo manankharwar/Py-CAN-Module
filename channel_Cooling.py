@@ -1,40 +1,28 @@
 import constants as c
 from canString import can2A
 
-
+#Cooling channel require 500 000 bit/s
 class Cooling(can2A):
 
-    def __init__(self, messageId, dataLength, data):
-        super().__init__(messageId, 500000, False, False, data, dataLength)
+    def __init__(self, msgType):
+        super().__init__(500000, False, False, msgType)
 
 
 class CoolingControlWords(Cooling):
-    def __init__(self, data):
-        ID = c.controlWords[0]
-        dataLen = c.controlWords[1]
-        if self.checkDataLen(data, dataLen):
-            super().__init__(ID, dataLen, data)
-        else:
-            print("Could not build message! Improper data passed")
+
+    def __init__(self):
+        super().__init__(c.controlWords)
 
 
 class CoolingStatusWords(Cooling):
-    def __init__(self, data):
-        ID = c.statusWords[0]
-        dataLen = c.statusWords[1]
-        if self.checkDataLen(data, dataLen):
-            super().__init__(ID, dataLen, data)
-        else:
-            print("Could not build message! Improper data passed")
+
+    def __init__(self):
+        super().__init__(c.statusWords)
 
 
 class CoolingAcknowledgement(Cooling):
-    def __init__(self, data):
-        ID = c.acknowledgement[0]
-        dataLen = c.acknowledgement[1]
-        if self.checkDataLen(data, dataLen):
-            super().__init__(ID, dataLen, data)
-        else:
-            print("Could not build message! Improper data passed")
+
+    def __init__(self):
+        super().__init__(c.acknowledgement)
 
 
