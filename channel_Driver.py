@@ -43,3 +43,8 @@ class DriverDrivingInputs(Driver):
     def __init__(self):
         super().__init__(c.driverInputs)
 
+class DriverVehicleDynamics(Driver):
+
+    def __init__(self):
+        super().__init__(c.vehicleDynamics)
+
