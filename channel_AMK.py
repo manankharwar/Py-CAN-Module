@@ -76,3 +76,4 @@ class AMKActualValues2Inverter3(AMK):
 
     def __init__(self):
         super().__init__(c.amkActualValues2Inverter3)
+

@@ -3,7 +3,7 @@ from can.interface import Bus
 import constants as c
 
 class canNode:
-    bus = Bus()
+    #bus = Bus()
 
     '''
         interface: String -> interface that represents the CAN interface specified
@@ -12,13 +12,33 @@ class canNode:
     '''
     def __init__(self, interface, bitrate,channel, key):
 
+        if channel == "AMK":
+            if key in c.dictAMK:
+                self.canString = c.dictAMK[key]()
+            else:
+                print("Pick a valid key-message pairing from the AMK channel")
+
+        elif channel == "Driver":
+            if key in c.dictDriver:
+                self.canString = c.dictDriver[key]()
+            else:
+                print("Pick a valid key-message pairing from the Driver channel")
+
+        elif channel == "Cooling":
+            if key in c.dictCooling:
+                self.canString = c.dictCooling[key]()
+            else:
+                print("Pick a valid key-message pairing from the Cooling channel")
+
+        else:
+            print("Please enter a valid channel: AMK, Cooling or Driver")
 
         try:
             can.rc['interface'] = interface
         except:
             print("Please enter a correct interface")
 
-        try: 
+        try:
             can.rc['channel'] = channel
         except:
             print("Please enter a correct channel")
@@ -27,27 +47,6 @@ class canNode:
             can.rc['bitrate'] = bitrate
         except:
             print("Please enter a valid bitrate")
-
-        if channel == "AMK":
-            if key in c.dictAMK:
-                self.canString = c.dictAMK.get(key)
-            else:
-                print("Pick a valid key-message pairing from the AMK channel")
-
-        elif channel == "Driver":
-            if key in c.dictDriver:
-                self.canString = c.dictDriver.get(key)
-            else:
-                print("Pick a valid key-message pairing from the Driver channel")
-
-        elif channel == "Cooling":
-            if key in c.dictCooling:
-                self.canString = c.dictCooling.get(key)
-            else:
-                print("Pick a valid key-message pairing from the Cooling channel")
-
-        else:
-            print("Please enter a valid channel: AMK, Cooling or Driver")
 
         
 
@@ -74,5 +73,3 @@ class canNode:
             msg = self.bus.recv()
             print(msg)
 
-
-    

@@ -2,6 +2,7 @@ import channel_AMK as AMK
 import channel_Driver as Driver
 import channel_Cooling as Cooling
 import constants
+import canNode
 
 def main():
     '''
@@ -29,8 +30,17 @@ def main():
         pass
         '''
 
-    x = constants.dictDriver.get(1)
+    x = constants.dictDriver[3]()
     print(x.msgId)
-    x.newData([1,2,3,4,5])
-    print(x.data)
+
+    y = constants.dictDriver[2]()
+    print(y.msgId)
+
+    z = constants.dictCooling[1]()
+    print(z.msgId)
+
+    a = AMK.AMKSetPoints1Inverter0()
+    print(a.msgId)
+
+
 main()
