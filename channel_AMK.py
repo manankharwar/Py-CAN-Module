@@ -11,13 +11,13 @@ class AMK(can2A):
 class AMKSetPoints1Inverter0(AMK):
 
     def __init__(self):
-        super().__init__(c.amkSetpoints1Inverter0)
+        super().__init__(c.amkSP1I0)
 
 
 class AMKSetPoints1Inverter1(AMK):
 
     def __init__(self):
-        super().__init__(c.amkSetpoints1Inverter1)
+        super().__init__(c.amkSP1I1)
 
 
 class AMKSetPoints1Inverter2(AMK):
@@ -29,51 +29,51 @@ class AMKSetPoints1Inverter2(AMK):
 class AMKSetPoints1Inverter3(AMK):
 
     def __init__(self):
-        super().__init__(c.amkSetpoints1Inverter3)
+        super().__init__(c.amkSP1I3)
 
 
 class AMKActualValues1Inverter0(AMK):
     def __init__(self):
-        super().__init__(c.amkActualValues1Inverter0)
+        super().__init__(c.amkAV1I0)
 
 
 class AMKActualValues2Inverter0(AMK):
     def __init__(self):
-        super().__init__(c.amkActualValues2Inverter0)
+        super().__init__(c.amkAV2I0)
 
 
 class AMKActualValues1Inverter1(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues1Inverter1)
+        super().__init__(c.amkAV1I1)
 
 
 class AMKActualValues2Inverter1(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues2Inverter1)
+        super().__init__(c.amkAV2I1)
 
 
 class AMKActualValues1Inverter2(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues1Inverter2)
+        super().__init__(c.amkAV1I2)
 
 
 class AMKActualValues2Inverter2(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues2Inverter2)
+        super().__init__(c.amkAV2I2)
 
 
 class AMKActualValues1Inverter3(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues1Inverter3)
+        super().__init__(c.amkAV1I3)
 
 
 class AMKActualValues2Inverter3(AMK):
 
     def __init__(self):
-        super().__init__(c.amkActualValues2Inverter3)
+        super().__init__(c.amkAV2I3)
 
