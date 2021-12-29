@@ -1,5 +1,6 @@
 '''
-File containing dictionary key classes to be called from main
+File containing dictionaries with a key corresponding to different 
+channel classes to be called from main.
 '''
 
 import channel_AMK

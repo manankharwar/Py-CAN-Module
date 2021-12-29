@@ -31,20 +31,14 @@ def main():
         pass
         '''
 
-    x = dict.dictDriver[3]()
-    print(x.msgId)
+    for i in range(1,13):
+        print(dict.dictAMK[i]().msgId)
 
-    y = dict.dictDriver[2]()
-    print(y.msgId)
+    for i in range(1,4):
+        print(dict.dictCooling[i]().msgId)
 
-    z = dict.dictCooling[1]()
-    print(z.msgId)
-
-    aa = dict.dictAMK[1]()
-    print(aa.msgId)
-
-    a = AMK.AMKSetPoints1Inverter0()
-    print(a.msgId)
+    for i in range(1,8):
+        print(dict.dictDriver[i]().msgId)
 
 
 

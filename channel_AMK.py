@@ -23,7 +23,7 @@ class AMKSetPoints1Inverter1(AMK):
 class AMKSetPoints1Inverter2(AMK):
 
     def __init__(self):
-        super().__init__(c.amkSetpoints1Inverter2)
+        super().__init__(c.amkSP1I2)
 
 
 class AMKSetPoints1Inverter3(AMK):
