@@ -4,6 +4,7 @@ import channel_Cooling as Cooling
 import constants
 import dict
 import canNode
+import testing
 
 def main():
     '''
@@ -31,14 +32,7 @@ def main():
         pass
         '''
 
-    for i in range(1,13):
-        print(dict.dictAMK[i]().msgId)
-
-    for i in range(1,4):
-        print(dict.dictCooling[i]().msgId)
-
-    for i in range(1,8):
-        print(dict.dictDriver[i]().msgId)
+    testing.testRandom()
 
 
 

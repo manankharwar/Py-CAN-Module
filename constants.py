@@ -1,7 +1,7 @@
 '''
 This is a .py file to store and utilize specific constants for CAN message string
 It is organized by channel with variable names based on given descriptions.
-format: description[message id, data length]
+format: description[message id, data length in bytes]
 taken from CAN_Traffic_Calculations.xlsx
 '''
 

@@ -1,9 +1,11 @@
 import can
 from can.interface import Bus
-import constants as c
+import dict
+import time
+import random
 
 class canNode:
-    #bus = Bus()
+    bus = Bus()
 
     '''
         interface: String -> interface that represents the CAN interface specified
@@ -13,22 +15,25 @@ class canNode:
     def __init__(self, interface, bitrate,channel, key):
 
         if channel == "AMK":
-            if key in c.dictAMK:
-                self.canString = c.dictAMK[key]()
+            if key in dict.dictAMK:
+                self.canString = dict.dictAMK[key]()
             else:
                 print("Pick a valid key-message pairing from the AMK channel")
+                return
 
         elif channel == "Driver":
-            if key in c.dictDriver:
-                self.canString = c.dictDriver[key]()
+            if key in dict.dictDriver:
+                self.canString = dict.dictDriver[key]()
             else:
                 print("Pick a valid key-message pairing from the Driver channel")
+                return
 
         elif channel == "Cooling":
-            if key in c.dictCooling:
-                self.canString = c.dictCooling[key]()
+            if key in dict.dictCooling:
+                self.canString = dict.dictCooling[key]()
             else:
                 print("Pick a valid key-message pairing from the Cooling channel")
+                return
 
         else:
             print("Please enter a valid channel: AMK, Cooling or Driver")
@@ -44,13 +49,13 @@ class canNode:
             print("Please enter a correct channel")
 
         try:
-            can.rc['bitrate'] = bitrate
+            can.rc['bitrate'] = self.canString.bitrate
         except:
-            print("Please enter a valid bitrate")
+            print("Please ensure a proper message was initialized")
 
         
-
-    def send(self, userData):
+    # Function to send a single message userData
+    def sendSingleton(self, userData):
 
         try:
             msg = can.Message(arbitration_id=self.canString.msgId,
@@ -67,9 +72,23 @@ class canNode:
         except:
             print("Please ensure message type is initialized")
 
+    # Function to send random messages for the given time and interval
+    def sendRandom(self, secs, interval):
+        tEnd = time.time() + secs
+        while time.time() < tEnd:
+            self.sendSingleton(self.randomDataGenerator())
+            time.sleep(secs/interval)
+
+    # do whatever you do
+
 
     def recieve(self):
         while True:
             msg = self.bus.recv()
             print(msg)
 
+    def randomDataGenerator(self):
+        data = []
+        for i in range(self.canString.dataBits):
+            data.append(random.randint(-255,256))
+        return data
