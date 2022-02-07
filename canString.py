@@ -80,6 +80,7 @@ class canString:
 class can2A(canString):
 
     def __init__(self, bitRate, errorFrame, remoteFrame, msgType):
+        #initialize flags for incorrect protocol requirements
         flag_id = False
         flag_bitRate = False
         if self.checkHexLen(str(msgType[0])) > 11:

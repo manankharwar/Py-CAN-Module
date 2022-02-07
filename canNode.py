@@ -5,14 +5,14 @@ import time
 import random
 
 class canNode:
-    bus = Bus()
+    #bus = Bus()
 
     '''
         interface: String -> interface that represents the CAN interface specified
         channed: String -> CAN channel to be used
         bitrate: Int -> bitrate for CAN communication
     '''
-    def __init__(self, interface, bitrate,channel, key):
+    def __init__(self, interface, channel, key):
 
         if channel == "AMK":
             if key in dict.dictAMK:
@@ -37,6 +37,7 @@ class canNode:
 
         else:
             print("Please enter a valid channel: AMK, Cooling or Driver")
+            return
 
         try:
             can.rc['interface'] = interface
@@ -79,8 +80,6 @@ class canNode:
             self.sendSingleton(self.randomDataGenerator())
             time.sleep(secs/interval)
 
-    # do whatever you do
-
 
     def recieve(self):
         while True:
@@ -90,5 +89,5 @@ class canNode:
     def randomDataGenerator(self):
         data = []
         for i in range(self.canString.dataBits):
-            data.append(random.randint(-255,256))
+            data.append(random.randint(-255, 256))
         return data
