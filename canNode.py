@@ -3,9 +3,14 @@ from can.interface import Bus
 import dict
 import time
 import random
+import excel
 
 class canNode:
     #bus = Bus()
+
+    #Hard coded .xls file ... change if necessary
+    fileName = "CAN_data"
+    ex = excel(fileName)
 
     '''
         interface: String -> interface that represents the CAN interface specified
@@ -46,6 +51,7 @@ class canNode:
 
         try:
             can.rc['channel'] = channel
+            self.chan = channel
         except:
             print("Please enter a correct channel")
 
@@ -53,6 +59,8 @@ class canNode:
             can.rc['bitrate'] = self.canString.bitrate
         except:
             print("Please ensure a proper message was initialized")
+
+        
 
         
     # Function to send a single message userData
@@ -68,6 +76,7 @@ class canNode:
             try:
                 self.bus.send(msg)
                 print("Message sent on " + str(self.bus.channel_info))
+                self.ex.addRows(self.canString.msgId,self.chan ,data=userData)
             except:
                 print("Message not sent")
         except:
