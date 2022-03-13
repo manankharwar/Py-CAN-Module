@@ -10,7 +10,7 @@ class canNode:
 
     #Hard coded .xls file ... change if necessary
     fileName = "CAN_data"
-    ex = excel(fileName)
+    ex = excel.excel(fileName)
 
     '''
         interface: String -> interface that represents the CAN interface specified

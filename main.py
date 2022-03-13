@@ -38,11 +38,12 @@ def main():
 
     '''
 
-    printFullKey()
+    #printFullKey()
+    run()
 
 
 def run():
-    chan = input("Enter a channel: AMK, Cooling or Driver")
+    chan = input("Enter a channel: AMK, Cooling or Driver: ")
     if chan == "AMK":
         printAMK()
         key = getKey()
@@ -69,7 +70,7 @@ def run():
     node = canNode.canNode('blank', chan, key)
 
 def getKey():
-    return int(input("Now enter the corresponding key to descriptions below"))
+    return int(input("Now enter the corresponding key to descriptions above\n"))
 
 def printFullKey():
     print("Welcome to CAN node emulator using Raspberry Pi!\n"
@@ -81,13 +82,17 @@ def printFullKey():
     printDriver()
 
 def printCooling():
-    print("Cooling | 1 | Cooling Control Words\n"
+    print(
+        "        | Key | Description\n"
+        "Cooling | 1 | Cooling Control Words\n"
           "Cooling | 2 | Cooling Status Words\n"
           "Cooling | 3 | Acknowledgement\n"
           "\n")
 
 def printAMK():
-    print( "AMK | 1 | AMK Set Points 1 Inverter 0\n"
+    print( 
+    "    | Key | Description\n"
+    "AMK | 1 | AMK Set Points 1 Inverter 0\n"
     "AMK | 2 | AMK Set Points 1 Inverter 1\n"
     "AMK | 3 | AMK Set Points 1 Inverter 2\n"
     "AMK | 4 | AMK Set Points 1 Inverter 3\n"
@@ -102,13 +107,15 @@ def printAMK():
     "\n")
 
 def printDriver():
-    print("Driver | 1 | Dashboard - Accumulator Data\n"
-          "Driver | 2 | Dashboard - Motor Data\n"
-          "Driver | 3 | Dashboard - Vehicle Data\n"
-          "Driver | 4 | Driver - Wheel Controls\n"
-          "Driver | 5 | Driver - Driver Settings\n"
-          "Driver | 6 | Driver - Driver Inputs\n"
-          "Driver | 7 | Vehicle Dynamics - GPS\n"
-          "\n")
+    print(
+        "       | Key | Description\n"
+        "Driver | 1 | Dashboard - Accumulator Data\n"
+        "Driver | 2 | Dashboard - Motor Data\n"
+        "Driver | 3 | Dashboard - Vehicle Data\n"
+        "Driver | 4 | Driver - Wheel Controls\n"
+        "Driver | 5 | Driver - Driver Settings\n"
+        "Driver | 6 | Driver - Driver Inputs\n"
+        "Driver | 7 | Vehicle Dynamics - GPS\n"
+        "\n")
 
 main()
